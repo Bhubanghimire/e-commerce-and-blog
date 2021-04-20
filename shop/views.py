@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Product
 
 # Create your views here.
 def home(request):
-    return render(request,"shop/home.html")
+    all_products = Product.objects.all()
+    param={"product":all_products}
+    return render(request,"shop/home.html",param)
 
 def about(request):
     return render(request,"shop/about.html")
