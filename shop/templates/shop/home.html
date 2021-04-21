@@ -46,7 +46,8 @@ bottom: auto;
 
     <!--Slideshow starts here -->
     {% for product, range, nSlides in all_prods %}
-    <h1>Men's Fashion</h1>
+    <br><br>
+    <h1>{{product.0.category}}</h1>
 <div id="demo{{forloop.counter}}" class="carousel slide my-3" data-ride="carousel">
     <ul class="carousel-indicators">
       <li data-target="#demo{{forloop.counter}}" data-slide-to="0" class="active"></li>
@@ -64,7 +65,7 @@ bottom: auto;
           <div class="card" style="width: 18rem;">
             <img src='/media/{{product.0.image}}' class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{product.0.product_name}}</h5>
+                <h5 class="card-title"><h3><b>{{product.0.product_name}}</b></h3></h5>
                 <p class="card-text">{{product.0.desc}}</p>
                 <a href="#" class="btn btn-primary">Add to Cart</a>
             </div>
@@ -77,7 +78,7 @@ bottom: auto;
           <div class="card" style="width: 18rem;">
             <img src='/media/{{i.image}}' class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{i.product_name}}</h5>
+              <h5 class="card-title"><b><h3>{{i.product_name}}</b></h3></h5>
               <p class="card-text">{{i.desc}}</p>
               <a href="#" class="btn btn-primary">Add To Cart</a>
             </div>
