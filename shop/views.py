@@ -33,5 +33,11 @@ def search(request):
 def checkout(request):
     return render(request,"shop/checkout.html")
 
+def quickview(request, id):
+    prods = Product.objects.get(Product_id=id)
+    print(prods)
+    param = {"prods":prods}
+    return render(request,'shop/detail.html',param)
+
 def productview(request):
     return render(request,"shop/viewproduct.html")
