@@ -7,9 +7,20 @@ class Product(models.Model):
     category = models.CharField(max_length=50, default="")
     sub_category = models.CharField(max_length=20, default="")
     price = models.IntegerField(default=0)
-    image = models.ImageField(upload_to="shop/image",  default="")
+    image = models.ImageField(upload_to="shop/image")
     desc = models.CharField(max_length=200)
     pub_date = models.DateField()
 
     def __str__(self):
         return self.product_name
+
+class Contact(models.Model):
+    msg_id = models.AutoField( primary_key=True )
+    Name = models.CharField(max_length=200)
+    Email = models.CharField(max_length=20)
+    Phone = models.IntegerField()
+    Address =models.CharField(max_length=20)
+    Message = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.Name
