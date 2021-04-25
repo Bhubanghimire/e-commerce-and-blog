@@ -41,12 +41,10 @@
 
 {% block body %}
     <div class="container">
-        <div class="col my-2">
-        <h2>step1:Review your card item</h2>
-        <div >
-        <ol id="items"class="list-group my-2 list-group-numbered">
-          
-          </ol>
+      <div class="col my-4">
+        <h2>Step 1 - My Awesome Cart Express Checkout - Review Your Cart Items</h2>
+        <div id="items">
+           
         </div>
     </div>
 
@@ -56,6 +54,7 @@
             {% csrf_token %}
 
             <input type="hidden" name="itemjson" id="itemjson">
+
             <label for="name"> Name</label>
             <input type="text" id="name" name="name" placeholder="Your name.">
         
@@ -107,5 +106,13 @@ for (item in cart) {
     $('#items').append(mystr);
 }
 document.getElementById('cart').innerHTML = sum;
+
+$('#itemjson').val(JSON.stringify(cart));
+{% if thank %}
+alert('Thanks for ordering with us. Your order is {{id}}. Use it to track your order using our order tracker');
+localStorage.clear();
+document.location = "/shop";
+{% endif %}
 </script>
-{%endblock%}
+{% endblock %}
+

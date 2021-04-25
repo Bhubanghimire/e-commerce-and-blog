@@ -23,9 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nar#2_vk!c49jd104&_+tzh%#u#fj6tn4h_1p@h7lag2c^81j8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS=["bhuban.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -56,7 +55,7 @@ ROOT_URLCONF = 'mac.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['mac/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
