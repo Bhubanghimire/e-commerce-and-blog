@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-nar#2_vk!c49jd104&_+tzh%#u#fj6tn4h_1p@h7lag2c^81j8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS=["bhuban.com", "localhost", "127.0.0.1"]
 
 
@@ -117,7 +117,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Default primary key field type

@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .models import Product, Contact, Order, OrderUpdate
 from math import ceil 
 import datetime
+import json
+
 # Create your views here.
 
 
@@ -32,7 +34,6 @@ def contact(request):
         phone=request.POST.get('phone', '')
         address = request.POST.get('country')
         desc=request.POST.get('subject', '')
-        print(name,email,phone,address, desc )
         contact = Contact(Name=name, Email= email,Address=address, Phone=phone,Message=desc)
         contact.save()
     return render(request,"shop/contact.html")
@@ -43,20 +44,22 @@ def tracker(request):
         orderId = request.POST.get('orderId', '')
         email = request.POST.get('email', '')
         try:
-            order = Order.objects.filter(Order_id=orderId, Email=email)
+            order = Order.objects.filter(Order_id=orderId,Email=email)
+            print("bhuban ghimire")
             if len(order)>0:
                 update = OrderUpdate.objects.filter(Order_id=orderId)
+                print(update)
                 updates = []
                 for item in update:
-                    updates.append({'text': item.update_desc, 'time': item.timestamp})
+                    updates.append({'text': item.Update_desc, 'time': item.TimeStamp})
                     response = json.dumps(updates, default=str)
                 return HttpResponse(response)
             else:
-                return HttpResponse('{}')
+                return HttpResponse('{"status":"noitem"}')
         except Exception as e:
-            return HttpResponse('{}')
-
+            return HttpResponse(f'exception{e}')
     return render(request, 'shop/tracker.html')
+
 
 
 
@@ -74,13 +77,15 @@ def checkout(request):
         address = request.POST.get('address')
         order = Order(Name=name, Email= email, District=district, Address=address, Phone=phone,Item_jason=item_jason)
         order.save()
+
         Update = OrderUpdate(Order_id=order.Order_id, Update_desc="The order has been placed")
         Update.save()
+
         thank=True
 
         id= order.Order_id
+
         param = {"thank":thank, "id":id}
-        print(item_jason)
         return render(request, "shop/checkout.html", param)
        
     return render(request,"shop/checkout.html")
